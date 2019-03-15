@@ -1,0 +1,69 @@
+  $list = [
+    [
+        ['name' => 'Николай Васильевич'],
+        ['email' => 'gogol@gogol.ru'],
+        ['yob' => 1809],
+        ['books' =>                
+            ['Мёртвые души', 'Вий'],
+        ],
+        ["bookYear" =>
+            [1841, 1834],
+        ]
+    ],[
+        ['name' => 'Пушкин'],
+        ['email' => 'alexandr@sergeevich.ru'],
+        ['yob' => 1799],
+        ['books' =>                
+            ['Пиковая дама', 'Дубровский'],
+        ],
+        ["bookYear" =>
+            [1833, 1841],
+        ],
+    ],[
+        ['name' => 'Толкин'],
+        ['email' => 'ronald@ruel.ru'],
+        ['yob' => 1892],
+        ['books' => 
+            ['Хоббит'],
+        ],
+        ["bookYear" =>
+            [1937],
+        ],
+    ]
+];
+
+// Вывод авторов
+foreach($list as $val) {
+    print $val[0]['name'].' - <a href="#">'.$val[1]['email'].'</a> - '.$val[2]['yob'].'</br>';
+}
+ 
+//Вывод книг
+foreach($list as $key => $val) {
+    for($i = 0; $i < count($val[3]['books']); $i++){
+        if($val[3]['books'][$i]) {  //Если имеется индекс в данном подмассиве
+            print $val[3]['books'][$i].' - '.$val[0]['name'].' - '.$val[4]['bookYear'][$i].'</br>';
+        }
+    }
+}
+$items = ['where', 'is', 'my', 'money'];
+$sum = 0;
+
+for($x = 0; $x < 100; $x++) {
+    if($x % 3 == 0) {
+        echo ($items[rand(0, count($items))]);
+
+        if($x % 5 == 0) {
+            shuffle($items);
+        }
+    }
+    if($x % 5 == 0) {
+        $sum += $x;
+    }
+}
+
+echo '</br>';
+
+for($y = 0; $y <count($items); $y++)
+{
+echo $items[$y].' ';
+}

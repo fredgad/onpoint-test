@@ -1,6 +1,7 @@
 const  
   gulp = require('gulp'),
   pump = require('pump'),
+  babel = require('gulp-babel'),
   minify = require('gulp-minify'),
   concat = require('gulp-concat'),
   cleanCSS = require('gulp-clean-css'),
@@ -19,6 +20,9 @@ function styles() {
 
 function scripts() {
   gulp.src('src/js/script.js')
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
     .pipe(concat('script.js'))
     .pipe(minify())
     .pipe(gulp.dest('app/js'))
@@ -28,7 +32,7 @@ function scripts() {
 
 function watch() {
   browserSync.init({
-    proxy: "redBinPhp"
+    proxy: "localhost" //Here is your local site
   });
   
   gulp.watch('./src/css/*.css', async ()=> {
@@ -48,4 +52,5 @@ gulp.task('scripts', async ()=> {
 gulp.task('watch', async ()=> { 
   watch(); 
 });
+
 
